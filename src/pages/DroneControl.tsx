@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Cpu, Battery, Wifi, Navigation, ArrowUp, ArrowDown, ArrowLeft, ArrowRight,
-  Home, AlertTriangle, MapPin, Gauge, Activity, RotateCcw, Play, Square,
-  Shield, Clock, WifiOff, Usb, Radio, CheckCircle, Loader2, X
+  Home, AlertTriangle, MapPin, Gauge, RotateCcw, Play, Square,
+  Clock, WifiOff, Usb, Radio, CheckCircle, Loader2
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 
@@ -270,7 +270,7 @@ function DroneConnectionPanel() {
 }
 
 export default function DroneControl() {
-  const { activeDrone } = useApp();
+  const { } = useApp();
   const [tick, setTick] = useState(0);
   const [flying, setFlying] = useState(false);
   const [autoMode, setAutoMode] = useState(false);
