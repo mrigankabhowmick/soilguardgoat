@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useRef } from 'react';
-import { Image, Search, Download, Filter, Tag, MapPin, Calendar, Camera, Grid, List, X, HardDrive, Upload, Cloud, RefreshCw, Loader2, CheckCircle, FolderOpen } from 'lucide-react';
+import { Image, Search, Download, Tag, MapPin, Calendar, Camera, Grid, List, X, HardDrive, Upload, Cloud, Loader2, CheckCircle, FolderOpen } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 
 const MEDIA_DATA = [
@@ -37,11 +37,11 @@ function SDCardPanel() {
       // Try the File System Access API (Chrome/Edge only)
       if ('showDirectoryPicker' in window) {
         try {
-          const dirHandle = await (window as unknown as { showDirectoryPicker: () => Promise<FileSystemDirectoryHandle> }).showDirectoryPicker();
+          const dirHandle = await (window as any).showDirectoryPicker();
           const files: File[] = [];
-          for await (const entry of dirHandle.values()) {
+          for await (const entry of (dirHandle as any).values()) {
             if (entry.kind === 'file') {
-              const fileHandle = entry as FileSystemFileHandle;
+              const fileHandle = entry as any;
               const file = await fileHandle.getFile();
               if (/\.(jpg|jpeg|png|webp|mp4|mov|dng|avi)$/i.test(file.name)) {
                 files.push(file);

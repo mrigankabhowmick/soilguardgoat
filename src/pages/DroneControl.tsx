@@ -286,7 +286,7 @@ export default function DroneControl() {
   const altitude = flying ? +(45 + Math.sin(tick * 0.3) * 3).toFixed(1) : 0;
   const speed = flying ? +(3.2 + Math.cos(tick * 0.4) * 0.5).toFixed(1) : 0;
   const signal = Math.min(100, 92 + Math.sin(tick * 0.2) * 5);
-  const heading = (tick * 2) % 360;
+  // const heading = (tick * 2) % 360;
 
   const flightLog = [
     { time: '10:32 AM', event: 'Mission started – Zone A survey', type: 'info' },
