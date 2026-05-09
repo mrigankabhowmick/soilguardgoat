@@ -1,6 +1,6 @@
 import React from 'react';
 import { AppProvider, useApp } from './context/AppContext';
-import AuthPage from './pages/AuthPage';
+// import AuthPage from './pages/AuthPage';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 import Dashboard from './pages/Dashboard';
@@ -15,7 +15,7 @@ import SettingsPage from './pages/Settings';
 function AppShell() {
   const { user, currentPage, sidebarOpen, theme } = useApp();
 
-  if (!user) return <AuthPage />;
+  // if (!user) return <AuthPage />;
 
   const pageMap: Record<string, React.ReactNode> = {
     dashboard: <Dashboard />,

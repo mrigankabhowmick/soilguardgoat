@@ -39,9 +39,20 @@ interface AppContextType {
 const AppContext = createContext<AppContextType | null>(null);
 
 export function AppProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<User | null>({
+    id: 'guest_user_id',
+    email: 'farmer@soilguard.ai',
+    user_metadata: { full_name: 'Guest Farmer' }
+  } as any);
   const [session, setSession] = useState<Session | null>(null);
-  const [profile, setProfile] = useState<Profile | null>(null);
+  const [profile, setProfile] = useState<Profile | null>({
+    id: 'guest_user_id',
+    full_name: 'Guest Farmer',
+    role: 'Admin',
+    avatar_url: '',
+    farm_name: 'Green Valley Farm',
+    created_at: new Date().toISOString()
+  });
   const [drones, setDrones] = useState<Drone[]>([]);
   const [alerts, setAlerts] = useState<AiAlert[]>([]);
   const [theme, setTheme] = useState<Theme>('dark');
@@ -52,6 +63,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [activeDrone, setActiveDrone] = useState<Drone | null>(null);
 
   useEffect(() => {
+    // Auth disabled for local/guest access
+    /*
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
       setUser(session?.user ?? null);
@@ -63,6 +76,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     });
 
     return () => subscription.unsubscribe();
+    */
   }, []);
 
   useEffect(() => {
@@ -100,7 +114,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setAlerts(prev => prev.map(a => a.id === id ? { ...a, is_read: true } : a));
   };
 
-  const signOut = () => supabase.auth.signOut();
+  const signOut = () => {
+    // Mock signout
+    window.location.reload();
+  };
 
   return (
     <AppContext.Provider value={{

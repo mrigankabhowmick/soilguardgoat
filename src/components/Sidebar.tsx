@@ -90,29 +90,7 @@ export default function Sidebar() {
         })}
       </nav>
 
-      {/* User */}
-      <div className="border-t border-gray-800/50 p-3 space-y-2">
-        {sidebarOpen && profile && (
-          <div className="flex items-center gap-2 px-2 py-1">
-            <div className="w-8 h-8 rounded-full bg-green-500/20 border border-green-500/30 flex items-center justify-center flex-shrink-0">
-              <span className="text-green-400 text-xs font-bold">
-                {profile.full_name?.charAt(0)?.toUpperCase() || 'U'}
-              </span>
-            </div>
-            <div className="overflow-hidden">
-              <div className="text-white text-xs font-medium truncate">{profile.full_name || 'Farmer'}</div>
-              <div className="text-gray-500 text-xs truncate">{profile.farm_name || 'My Farm'}</div>
-            </div>
-          </div>
-        )}
-        <button
-          onClick={signOut}
-          className="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-gray-500 hover:text-red-400 hover:bg-red-500/10 transition-all"
-        >
-          <LogOut className="w-4 h-4 flex-shrink-0" />
-          {sidebarOpen && <span className="text-sm">Sign Out</span>}
-        </button>
-      </div>
+      {/* User section removed for no-auth mode */}
     </aside>
   );
 }
